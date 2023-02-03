@@ -1,4 +1,4 @@
-import './globals.css'
+'use state';
 
 export default function RootLayout({
   children,
