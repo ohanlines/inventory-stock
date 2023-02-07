@@ -41,13 +41,13 @@ export default function AddProductForm() {
                 }
             )}
             placeholder="Product"
-            class={styles.button}/>
+            className={styles.button}/>
 
            <input {...register("category", {
                required: "this is required."
                 }
             )}
-            class={styles.button}
+            className={styles.button}
             placeholder="Category"/>
 
            <input {...register("price",{
@@ -57,10 +57,10 @@ export default function AddProductForm() {
             )}
             type="number"
             placeholder="Price"
-            class={styles.button}
+            className={styles.button}
             />
 
-           <input type="submit" class="transision ease-in-out delay-150 border border-green-400 hover:bg-green-400 hover:scale-110 duration-300 px-2 rounded"/>
+           <input type="submit" className="transision ease-in-out delay-150 border border-green-400 hover:bg-green-400 hover:scale-110 duration-300 px-2 rounded"/>
            </form>
        </div>
    )
