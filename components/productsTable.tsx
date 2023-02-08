@@ -1,7 +1,6 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 const styles = {
     button: "border border-green-400 px-2 mr-2 rounded"
@@ -18,13 +17,22 @@ async function getProducts() {
 }
 
 export default async function GetProductsTable() {
-    const data = await getProducts();
+    const [data, setData] = useState({})
+    // const data = await getProducts();
 
-    console.log("DATA GUEH ", data[0].product);
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetch(`/api/getProduct`)//getProducts();
+            const responseJSON = await response.json();
+            console.log("JSON RESPONSE ", responseJSON);
+            setData(responseJSON);
+        }
+        getData();
+    }, [])
 
     return(
         <>
-            <p>{data[0].product}</p>
+            <p>{data}</p>
         </>
 
         // <table>

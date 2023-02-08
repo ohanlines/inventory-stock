@@ -30,8 +30,8 @@ export default async function Home() {
       <AddProductForm/>
 
       {/* @ts-expect-error */}
-      <GetProductsTable/>
       {/*
+      <GetProductsTable/>
       <p>coba</p>
 
       <p>coba2</p>
