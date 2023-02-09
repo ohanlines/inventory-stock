@@ -1,5 +1,3 @@
-'use state';
-
 import './globals.css'
 
 export default function RootLayout({
@@ -15,17 +13,6 @@ export default function RootLayout({
       */}
       <head />
       <body>{children}</body>
-
-            {/*
-      <footer>
-        <div className="text-center text-xs ">
-          <p>
-            ini footer paling keren
-              Dibuat @ rumah pak Djamalis kamar paling pojok
-          </p>
-        </div>
-      </footer>
-               */}
     </html>
   )
 }
