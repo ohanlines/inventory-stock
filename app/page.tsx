@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 // function to view data
 async function getPosts() {
   const res = await fetch(`${process.env.BASE_URL}/api/getProduct`)
-
+  console.log(res, "GET")
   if (!res.ok) {
     console.log(res)
   }
@@ -20,8 +20,8 @@ async function getPosts() {
 
 
 export default async function Home() {
-  // const data = await getPosts()
-  // console.log(data)
+  const data = await getPosts()
+  console.log(data, "HOME")
 
   // console.log(req)
   // console.log(res)
@@ -30,23 +30,11 @@ export default async function Home() {
       <AddProductForm/>
 
       {/* @ts-expect-error */}
-      {/*
-      <GetProductsTable/>
-      <p>coba</p>
+      <GetProductsTable data={data}/>
 
-      <p>coba2</p>
-      <table>
-        <tbody>
-          {data.map((data) => (
-            <tr>
-              <td>{data.product}</td>
-              <td>{data.category}</td>
-              <td>{data.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-       */}
+      <footer className="text-center">
+        <p className="text-blue-900 hover:decoration-wavy">coba footer</p>
+      </footer>
     </>
   );
 }

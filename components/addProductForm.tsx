@@ -24,7 +24,7 @@ async function AddProduct(data: any) {
 export default function AddProductForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    console.log(errors);
+    // console.log(errors);
 
    return(
        <div className="flex justify-center py-4">
