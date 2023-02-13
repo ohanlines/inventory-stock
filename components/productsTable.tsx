@@ -1,35 +1,40 @@
-// 'use client';
+'use client';
 
+import useSWR, { preload } from 'swr'
 // import { useEffect, useState } from 'react';
 
-const styles = {
-    button: "border border-green-400 px-2 mr-2 rounded"
-}
+// const styles = {
+//     button: "border border-green-400 px-2 mr-2 rounded"
+// }
 
-async function getProducts() {
-    // const res = await fetch(`${process.env.BASE_URL}/api/getProduct`)
-    const res = await fetch(`/api/getProduct`)
+// async function getProducts() {
+//     // const res = await fetch(`${process.env.BASE_URL}/api/getProduct`)
+//     const res = await fetch(`/api/getProduct`)
 
-    if (!res.ok) {
-        console.log(res)
-    }
-    return await res.json();
-}
+//     if (!res.ok) {
+//         console.log(res)
+//     }
+//     return await res.json();
+// }
 
-export default async function GetProductsTable(props: any) {
-    const { data } = props
+// const fetcher = async () => {
+//   const res = await fetch(`/api/getProduct`)
+//   const data = await res.json()
+//   return data
+// }
+
+const fetcher = (url: string) => fetch(url).then(res => res.json())
+
+preload(`/api/getProduct`, fetcher)
+
+export default function GetProductsTable() {
+    const { data, error } = useSWR(`/api/getProduct/`, fetcher)
+
+    // const { data } = props
+    console.log("DATA TABLE: ", data)
+    // console.log("TYPE: ", typeof data)
     // const [data, setData] = useState({})
     // const data = await getProducts();
-
-    // useEffect(() => {
-    //     const getData = async () => {
-    //         const response = await fetch(`/api/getProduct`)//getProducts();
-    //         const responseJSON = await response.json();
-    //         console.log("JSON RESPONSE ", responseJSON);
-    //         setData(responseJSON);
-    //     }
-    //     getData();
-    // }, [])
 
     return(
         <>
