@@ -27,7 +27,7 @@ export default function AddProductForm() {
     // console.log(errors);
 
    return(
-       <div className="flex justify-center py-4">
+       <div className="flex justify-center">
            <form onSubmit={handleSubmit((data) => {
             try {
                 AddProduct(data);
