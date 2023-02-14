@@ -7,7 +7,7 @@ import GetProductsTable from '../components/productsTable'
 import useSWR, { preload } from 'swr'
 
 const styles = {
-  tableOutsideBorder: "border border-black rounded",
+  tableOutsideBorder: "border border-black overflow-y-scroll h-96",
   tableTitleBorder: "w-full table-fixed divide-y divide-black",
   hoverTableItems: "hover:shadow-md hover:border hover:border-blue-400"
 }
