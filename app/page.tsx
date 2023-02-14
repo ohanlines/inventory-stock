@@ -7,10 +7,12 @@ import GetProductsTable from '../components/productsTable'
 import useSWR, { preload } from 'swr'
 
 const styles = {
-  tableOutsideBorder: "border border-black overflow-y-scroll h-96",
-  tableTitleBorder: "w-full table-fixed divide-y divide-black",
+  tableOutsideBorder: "border border-black overflow-y-scroll h-96 rounded",
+  tableBorder: "w-full table-fixed ",
+  tableHead: "sticky top-0 bg-slate-50",
   hoverTableItems: "hover:shadow-md hover:border hover:border-blue-400"
 }
+
 // succeed fetch data using swr in page.tsx,
 // but failed when passing the data to other component (productsTable.tsx)
 const fetcher = async () => {
@@ -38,15 +40,16 @@ export default function Home() {
           <AddProductForm/>
 
           <div className={styles.tableOutsideBorder}>
-            <table className={styles.tableTitleBorder}>
-              <thead>
+            <table className={styles.tableBorder}>
+              <thead className={styles.tableHead}>
                 <tr>
                   <th>Product Name</th>
                   <th>Product Category</th>
                   <th>Price</th>
                 </tr>
               </thead>
-              <tbody>
+
+              <tbody className="">
                 {data.map((data: any) => (
                   <tr key={data.id} className={styles.hoverTableItems}>
                     <td>{data.product}</td>
