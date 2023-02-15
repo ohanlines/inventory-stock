@@ -22,7 +22,13 @@ async function AddProduct(data: any) {
 }
 
 export default function AddProductForm() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            product: "",
+            category: "",
+            price: ""
+        }
+    });
 
     // console.log(errors);
 
@@ -31,6 +37,7 @@ export default function AddProductForm() {
            <form onSubmit={handleSubmit((data) => {
             try {
                 AddProduct(data);
+                reset()
                 console.log("DATA: ", data);
             }   catch (err) {
                 console.log("ERROR: ", err);
