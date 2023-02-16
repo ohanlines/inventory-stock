@@ -5,6 +5,8 @@ import Link from 'next/link'
 import AddProductForm from '../components/addProductForm'
 import GetProductsTable from '../components/productsTable'
 import useSWR, { preload } from 'swr'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 const styles = {
   tableOutsideBorder: "border border-black overflow-y-scroll h-96 rounded",
@@ -28,16 +30,32 @@ preload(`/api/getProduct`, fetcher)
 export default function Home() {
   // const data = await getPosts()
   const { data, error, isValidating } = useSWR(`/api/getProduct`, fetcher)
+  const { register, reset, watch } = useForm({
+    defaultValues: {
+      search: ''
+    }
+  })
 
   console.log("VALIDATING?: ", isValidating)
   console.log("DATA SWR: ", data)
+
+  const search = watch('search')
 
   if (isValidating) return <p>Loading</p>
 
     return (
       <>
         <div className="flex flex-col gap-4 p-10">
+        {/*
           <AddProductForm/>
+          */}
+
+          <form>
+            <input {...register('search')}
+              placeholder='search...'
+              className="border border-black px-2"/>
+          </form>
+
 
           <div className={styles.tableOutsideBorder}>
             <table className={styles.tableBorder}>
@@ -49,8 +67,14 @@ export default function Home() {
                 </tr>
               </thead>
 
-              <tbody className="">
-                {data.map((data: any) => (
+              <tbody>
+                {data
+                  .filter((data: any) => {
+                    return search?.toLowerCase() === ''
+                    ? data
+                    : data.product?.toLowerCase().includes(search);
+                  })
+                  .map((data: any) => (
                   <tr key={data.id} className={styles.hoverTableItems}>
                     <td>{data.product}</td>
                     <td>{data.category}</td>
@@ -62,7 +86,7 @@ export default function Home() {
           </div>
 
           <footer>
-            <p className="text-blue-900 hover:decoration-wavy">coba footer</p>
+            <p className="text-blue-900 hover:decoration-wavy">Coba Footer, Sekalian Coba Emoji 😠</p>
           </footer>
         </div>
       </>
