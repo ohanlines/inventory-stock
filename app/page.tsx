@@ -59,7 +59,7 @@ export default function Home() {
                 <input {...register('search')}
                   placeholder='search...'
                   className="w-1/2 ml-auto border border-black rounded-l-md px-2 py-2"/>
-                <button type='button' className="border border-black rounded-r-md px-2 py-2">
+                <button onClick={() => reset()} type='button' className="border border-black rounded-r-md px-2 py-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
