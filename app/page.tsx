@@ -50,12 +50,29 @@ export default function Home() {
           <AddProductForm/>
           */}
 
-          <form>
-            <input {...register('search')}
-              placeholder='search...'
-              className="border border-black px-2"/>
-          </form>
-
+          <div className="flex flex-row justify-end">
+            <div className="basis-1/12 bg-sky-500">
+              <p>coba</p>
+            </div>
+            <div className="basis-11/12 item-center bg-cyan-500">
+              <form className="flex">
+                <input {...register('search')}
+                  placeholder='search...'
+                  className="w-1/2 ml-auto border border-black rounded-l-md px-2 py-2"/>
+                <button type='button' className="border border-black rounded-r-md px-2 py-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    className="w-4 h-4 stroke-width-3 stroke-black fill-none">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
 
           <div className={styles.tableOutsideBorder}>
             <table className={styles.tableBorder}>
