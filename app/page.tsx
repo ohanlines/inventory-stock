@@ -51,10 +51,22 @@ export default function Home() {
           */}
 
           <div className="flex flex-row justify-end">
-            <div className="basis-1/12 bg-sky-500">
-              <p>coba</p>
+            <div className="flex basis-1/12 border border-black rounded justify-center items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v12m6-6H6" />
+              </svg>
+              <p className="ml-2">Add New</p>
             </div>
-            <div className="basis-11/12 item-center bg-cyan-500">
+            <div className="basis-11/12 item-center">
               <form className="flex">
                 <input {...register('search')}
                   placeholder='search...'
