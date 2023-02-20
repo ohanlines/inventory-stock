@@ -7,12 +7,13 @@ import GetProductsTable from '../components/productsTable'
 import useSWR, { preload } from 'swr'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 
 const styles = {
   tableOutsideBorder: "border border-black overflow-y-scroll h-96 rounded",
   tableBorder: "w-full table-fixed ",
   tableHead: "sticky top-0 bg-slate-50",
-  hoverTableItems: "hover:shadow-md hover:border hover:border-blue-400"
+  hoverTableItems: "cursor-pointer hover:shadow-md hover:border hover:border-blue-400"
 }
 
 // succeed fetch data using swr in page.tsx,
@@ -39,6 +40,7 @@ export default function Home() {
   console.log("VALIDATING?: ", isValidating)
   console.log("DATA SWR: ", data)
 
+  const router = useRouter()
   const search = watch('search')
 
   if (isValidating) return <p>Loading</p>
@@ -56,12 +58,12 @@ export default function Home() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-6 h-6">
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M12 6v12m6-6H6" />
               </svg>
               <p className="ml-2">Add New</p>
@@ -77,8 +79,8 @@ export default function Home() {
                     viewBox="0 0 24 24"
                     className="w-4 h-4 stroke-width-3 stroke-black fill-none">
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
                   </svg>
                 </button>
@@ -104,7 +106,7 @@ export default function Home() {
                     : data.product?.toLowerCase().includes(search);
                   })
                   .map((data: any) => (
-                  <tr key={data.id} className={styles.hoverTableItems}>
+                  <tr onClick={() => { router.push(`/${data.id}`) }} key={data.id} className={styles.hoverTableItems}>
                     <td>{data.product}</td>
                     <td>{data.category}</td>
                     <td>{data.price}</td>
