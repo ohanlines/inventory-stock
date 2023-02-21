@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import AddProductForm from '../components/addProductForm'
 import GetProductsTable from '../components/productsTable'
 import useSWR, { preload } from 'swr'
@@ -106,7 +105,9 @@ export default function Home() {
                     : data.product?.toLowerCase().includes(search);
                   })
                   .map((data: any) => (
-                  <tr onClick={() => { router.push(`/${data.id}`) }} key={data.id} className={styles.hoverTableItems}>
+                  <tr onClick={() => {
+                    router.push(`/${data.id}`)
+                  }} key={data.id} className={styles.hoverTableItems}>
                     <td>{data.product}</td>
                     <td>{data.category}</td>
                     <td>{data.price}</td>
