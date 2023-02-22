@@ -15,7 +15,7 @@ export default async function productDetail({ params }: any) {
     console.log(">>> ", item)
     return (
         <>
-            <Link href="/" >BACK</Link>
+            <Link href="/products/" >BACK</Link>
             <ul>
                 <li>{item.id}</li>
                 <li>{item.product}</li>
