@@ -13,7 +13,8 @@ export default async function handler(
     }
     try {
         const product = JSON.parse(req.body);
-        const saveProduct = await prisma.stock.create({data: product});
+        console.log("HEHE>>> ", product.cart)
+        const saveProduct = await prisma.stock.createMany({data: product.cart});
         res.status(200).json(saveProduct);
     }   catch(err) {
         res.status(400).json({message: 'Something Went Wrong Ohan'});
