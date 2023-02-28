@@ -1,4 +1,6 @@
+// 'use client'
 import Link from 'next/link'
+import DeleteProductButton from '../../../components/deleteProduct'
 
 async function getProduct(param: any) {
     const res = await fetch(`${process.env.BASE_URL}/api/filterGetProduct/${param}`)
@@ -8,14 +10,12 @@ async function getProduct(param: any) {
     return data
 }
 
+
 export default async function productDetail({ params }: any) {
     const data = await getProduct(params.id)
     const item = data[0]
 
-    console.log(data)
     console.log("PARAMS: ", params)
-    // console.log("<<< ", params.id)
-    // console.log(">>> ", item)
     return (
         <>
             <Link href="/products/" >BACK</Link>
@@ -28,6 +28,8 @@ export default async function productDetail({ params }: any) {
                 <li>{item.category}</li>
                 <li>{item.price}</li>
             </ul>
+
+            <DeleteProductButton id={item.id} />
             {/*
 
             <h1>{params.id}</h1>
