@@ -23,15 +23,15 @@ import useSWR, { preload } from 'swr'
 //   return data
 // }
 
-const fetcher = (url: string) => fetch(url).then(res => res.json())
+// const fetcher = (url: string) => fetch(url).then(res => res.json())
 
-preload(`/api/getProduct`, fetcher)
+// preload(`/api/getProduct`, fetcher)
 
 export default function GetProductsTable() {
-    const { data, error } = useSWR(`/api/getProduct/`, fetcher)
+    // const { data, error } = useSWR(`/api/getProduct/`, fetcher)
 
     // const { data } = props
-    console.log("DATA TABLE: ", data)
+    // console.log("DATA TABLE: ", data)
     // console.log("TYPE: ", typeof data)
     // const [data, setData] = useState({})
     // const data = await getProducts();
