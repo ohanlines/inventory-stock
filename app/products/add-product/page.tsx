@@ -2,6 +2,7 @@
 
 import { useForm, useFieldArray } from 'react-hook-form';
 import React from 'react';
+import Link from 'next/link'
 import productDetail from '../[id]/page';
 
 const styles = {
@@ -50,6 +51,7 @@ export default function Home() {
 
    return(
        <div className="flex justify-center">
+         <Link href="/products/" >BACK</Link>
          <form>
            {fields.map((field, index) => {
            return <section key={field.id} className="my-2">

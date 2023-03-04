@@ -52,7 +52,11 @@ export default function Home() {
           */}
 
           <div className="flex flex-row justify-end">
-            <div className="flex basis-1/12 border border-black rounded justify-center items-center">
+            <div
+              onClick={() =>
+                  router.push('products/add-product')
+                }
+              className="flex basis-1/12 border border-black rounded justify-center items-center cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
