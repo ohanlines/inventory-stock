@@ -30,7 +30,8 @@ export default function Home() {
             cart: [{
                 product: '',
                 category: '',
-                price: ''
+                price: '',
+                stock:''
             }]
         }
     });
@@ -79,6 +80,16 @@ export default function Home() {
                     className={styles.inputForm}
                     />
 
+             <input {...register(`cart.${index}.stock`, {
+                        required: "this is required.",
+                        valueAsNumber: true,
+                        }
+                    )}
+                    type="number"
+                    placeholder="Stock"
+                    className={styles.inputForm}
+                    />
+
              <button
                 onClick={() => remove(index)}
                 className={styles.inputButton}>
@@ -94,7 +105,8 @@ export default function Home() {
                  append({
                      product: '',
                      category: '',
-                     price: ''
+                     price: '',
+                     stock: ''
                  })
              }}
             className={styles.inputButton}>
