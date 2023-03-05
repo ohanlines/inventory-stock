@@ -1,12 +1,9 @@
 'use client'
 
-import Image from 'next/image'
-import AddProductForm from '../../components/addProductForm'
-import GetProductsTable from '../../components/productsTable'
 import useSWR, { preload } from 'swr'
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { ArrowPathIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 
 const styles = {
   tableOutsideBorder: "border border-black overflow-y-scroll h-96 rounded",
@@ -15,8 +12,6 @@ const styles = {
   hoverTableItems: "cursor-pointer hover:shadow-md hover:border hover:border-blue-400"
 }
 
-// succeed fetch data using swr in page.tsx,
-// but failed when passing the data to other component (productsTable.tsx)
 const fetcher = async () => {
   const res = await fetch(`/api/getProduct`)
   const data = await res.json()
@@ -47,46 +42,24 @@ export default function Home() {
     return (
       <>
         <div className="flex flex-col gap-4 p-10">
-        {/*
-          <AddProductForm/>
-          */}
-
           <div className="flex flex-row justify-end">
             <div
               onClick={() =>
                   router.push('products/add-product')
                 }
               className="flex basis-1/12 border border-black rounded justify-center items-center cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v12m6-6H6" />
-              </svg>
+              <PlusSmallIcon className="w-6 h-6" />
               <p className="ml-2">Add New</p>
             </div>
+
             <div className="basis-11/12 item-center">
               <form className="flex">
                 <input {...register('search')}
                   placeholder='search...'
                   className="w-1/2 ml-auto border border-black rounded-l-md px-2 py-2"/>
                 <button onClick={() => reset()} type='button' className="border border-black rounded-r-md px-2 py-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    className="w-4 h-4 stroke-width-3 stroke-black fill-none">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
-                  </svg>
-                </button>
+                  <ArrowPathIcon className="w-4 h-4 stroke-width-3 stroke-black fill-none" />
+               </button>
               </form>
             </div>
           </div>
@@ -98,6 +71,7 @@ export default function Home() {
                   <th>Product Name</th>
                   <th>Product Category</th>
                   <th>Price</th>
+                  <th>Stock</th>
                 </tr>
               </thead>
 
@@ -115,6 +89,7 @@ export default function Home() {
                     <td>{data.product}</td>
                     <td>{data.category}</td>
                     <td>{data.price}</td>
+                    <td>{data.stock}</td>
                   </tr>
                 ))}
               </tbody>
