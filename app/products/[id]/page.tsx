@@ -1,10 +1,9 @@
 // 'use client'
 import Link from 'next/link'
-import DeleteProductButton from '../../../components/deleteProduct'
+import DeleteProductButton from '../../../components/deleteProductButton'
 
 async function getProduct(param: any) {
     const res = await fetch(`${process.env.BASE_URL}/api/filterGetProduct/${param}`)
-    // const res = await fetch (`${process.env.BASE_URL}/api/getProduct`)
     const data = await res.json()
 
     return data
@@ -27,6 +26,7 @@ export default async function productDetail({ params }: any) {
                 <li>{item.product}</li>
                 <li>{item.category}</li>
                 <li>{item.price}</li>
+                <li>{item.stock}</li>
             </ul>
 
             <DeleteProductButton id={item.id} />
