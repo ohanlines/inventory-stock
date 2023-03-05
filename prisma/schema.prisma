@@ -15,4 +15,5 @@ model Stock {
   product String
   category String
   price Int
+  stock Int
 }
