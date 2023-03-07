@@ -4,10 +4,11 @@ import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
-export default function Example({ people }: any) {
+export default function Example({ register, name, people }: any) {
   const [selected, setSelected] = useState(people[0])
   const [query, setQuery] = useState('')
 
+  const hookForm = register(name)
   // const data = await products()
   // console.log("DATA TO SHOW: ", data)
 
@@ -22,14 +23,15 @@ export default function Example({ people }: any) {
         )
 
   return (
-    <div className="fixed top-16 w-72">
+    <div className="">
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+              className="w-full border-none focus:outline-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               displayValue={(person) => person.product}
               onChange={(event) => setQuery(event.target.value)}
+              {...register(name)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
