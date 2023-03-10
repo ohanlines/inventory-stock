@@ -6,7 +6,7 @@ import InputList from '../../components/inputList'
 
 const styles = {
   inputButton: "transision ease-in-out delay-10 border border-green-400 hover:bg-green-400 hover:scale-110 duration-10 px-2 mr-2 rounded",
-  numInputDiv: "cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm",
+  numInputDiv: "cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm mr-2",
   numInput: "border-none focus:outline-none py-2 pl-3 pr-3 text-sm leading-5 text-gray-900 focus:ring-0 w-16"
 }
 
@@ -59,11 +59,11 @@ export default function Home() {
 
             */}
 
-          <div className="flex bg-blue-400 justify-center">
+          <div className="flex justify-center">
             <form onSubmit={handleSubmit((data) => console.log("DATA: ", data))}>
               {fields.map((field, index) => {
-              return <section key={field.id} >
-                <div className="flex flex-row">
+              return <section key={field.id} className="flex flex-row my-2">
+                <div className="mr-2">
                   <InputList
                     name={`cart.${index}.product`}
                     register={register}
