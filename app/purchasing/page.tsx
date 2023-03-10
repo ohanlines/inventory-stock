@@ -1,8 +1,10 @@
 'use client'
 
 import useSWR, { preload } from 'swr'
+import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import InputList from '../../components/inputList'
+import LoadingScreen from '../../components/loadingScreen'
 
 const styles = {
   inputButton: "transision ease-in-out delay-10 border border-green-400 hover:bg-green-400 hover:scale-110 duration-10 px-2 mr-2 rounded",
@@ -20,7 +22,8 @@ preload(`/api/getProduct`, fetcher)
 
 
 export default function Home() {
-    const { data, isValidating } = useSWR('/api/getProduct', fetcher)
+    const [loading, setLoading] = useState(false)
+    const { data, isValidating, isLoading } = useSWR('/api/getProduct', fetcher)
     const { register, handleSubmit, reset, control } = useForm({
       defaultValues: {
         cart: [{
@@ -38,17 +41,27 @@ export default function Home() {
       control
     })
 
-    const sumbitData = (data: any) => {
+    // if (isLoading) return <LoadingScreen />
+
+    // if (isValidating) {
+    //   <LoadingScreen/>
+    //   setTimeout(() => {
+
+    //   <LoadingScreen/>
+    //   }, 1000)
+    // }
+
+    if (isValidating) return <LoadingScreen />
+
+    const submitData = (data: any) => {
       try {
+        reset()
         console.log("DATA: ", data);
       } catch (err) {
         console.log("ERROR: ", err)
       }
     }
 
-    // const coba = watch('product')
-    // console.log("COBA: ", coba)
-    if (isValidating) return <p>Loading...</p>
     return (
         <>
           {/*
@@ -60,7 +73,7 @@ export default function Home() {
             */}
 
           <div className="flex justify-center">
-            <form onSubmit={handleSubmit((data) => console.log("DATA: ", data))}>
+            <form>
               {fields.map((field, index) => {
               return <section key={field.id} className="flex flex-row my-2">
                 <div className="mr-2">
@@ -89,17 +102,17 @@ export default function Home() {
                 <button
                   type='button'
                   onClick={() => {
-
-                  append({
-                  product: '',
-                  amount: ''
-                  })
+                    append({
+                    product: '',
+                    amount: ''
+                    })
                   }}
                   className={styles.inputButton}>
                   Add More..
                 </button>
 
                 <button
+                  onClick={handleSubmit((data) => submitData(data))}
                   className={styles.inputButton}
                   type='submit'>
                   Submit
