@@ -21,7 +21,9 @@ const fetcher = async () => {
 export default function Home() {
     const [showError, setShowError] = useState({ isActive: false, text: '' })
     const [dataProductSet, setDataProductSet] = useState<Set<string>>(new Set());
-    const { data, error, isValidating, isLoading } = useSWR('/api/getProduct', fetcher)
+    const { data, error, isValidating, isLoading } = useSWR('/api/getProduct', fetcher, {
+      revalidateOnFocus: false
+    })
     const { register, handleSubmit, reset, control, getValues, watch } = useForm({
       defaultValues: {
         cart: [{
